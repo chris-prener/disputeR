@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 [![R build status](https://github.com/chris-prener/disputeR/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/disputeR/actions)
 
-The goal of `disputeR` is to easily implement unit tests within functions and Shiny modules. Unlike other packages that provide frameworks for developing these tests, `disputeR` takes a different approach, offering pre-built unit tests that can easily be dropped into functions and test for basic requirements, like class, length, and common values used in function writing (such as `NULL`). These tests return informative error messages that follow the 'tidyverse' style guide's recommendations.
+The goal of `disputeR` is to easily implement unit tests within functions and Shiny modules. Unlike other packages that provide frameworks for developing these tests, `disputeR` takes a different approach, offering pre-built unit tests that can easily be dropped into functions and test for basic requirements, like class, length, and common values used in function writing (such as `NULL`). These tests return informative error messages that follow the [`tidyverse` style guide's recommendations](https://style.tidyverse.org/errors.html).
 
 ## Installation
 

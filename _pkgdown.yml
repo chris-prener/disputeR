@@ -33,5 +33,6 @@ reference:
 
   - title: "Developer Tools"
     desc: "Setting disputeR's global variables"
+    contents:
     - dis_dev_check
     - dis_fact_check

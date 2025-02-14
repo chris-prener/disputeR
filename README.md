@@ -12,8 +12,8 @@ frameworks for developing these tests, `disputeR` takes a different
 approach, offering pre-built unit tests that can easily be dropped into
 functions and test for basic requirements, like class, length, and
 common values used in function writing (such as `NULL`). These tests
-return informative error messages that follow the ‘tidyverse’ style
-guide’s recommendations.
+return informative error messages that follow the [`tidyverse` style
+guide’s recommendations](https://style.tidyverse.org/errors.html).
 
 ## Installation
 
