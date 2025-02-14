@@ -3,8 +3,8 @@
 
 # disputeR
 
-<!-- badges: start -->
-<!-- badges: end -->
+[![R build
+status](https://github.com/chris-prener/disputeR/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/disputeR/actions)
 
 The goal of `disputeR` is to easily implement unit tests within
 functions and Shiny modules. Unlike other packages that provide
@@ -17,7 +17,7 @@ guide’s recommendations.
 
 ## Installation
 
-You can install the development version of disputeR from
+You can install the development version of `disputeR` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -85,9 +85,9 @@ instructions for fixing the error is returned:
 
 ``` r
 example(x = "test")
-#> Error in `dis_msg_class()`:
-#> ! `param` must be provided but is missing.
-#> ℹ Add an argument for `param` to the function call.
+#> Error in `example()`:
+#> ! `x` must be a <numeric> scalar, not a <character> scalar.
+#> ℹ Provide a <numeric> scalar for `x`, such as `x = 1`.
 ```
 
 A similar approach can be taken for both character and logical
@@ -128,9 +128,10 @@ example(x = 2.25, round = TRUE)
 
 ## error found
 example(x = 2.25, round = "yes")
-#> Error in `dis_msg_class()`:
-#> ! `param` must be provided but is missing.
-#> ℹ Add an argument for `param` to the function call.
+#> Error in `example()`:
+#> ! `round` must be a <logical> scalar, not a <character> scalar.
+#> ℹ Provide a <logical> scalar for `round`, such as `round = TRUE` or `round =
+#>   FALSE`.
 ```
 
 Both `dis_numeric()` and `dis_character()` also accept strings of valid

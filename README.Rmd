@@ -15,14 +15,13 @@ knitr::opts_chunk$set(
 
 # disputeR
 
-<!-- badges: start -->
-<!-- badges: end -->
+[![R build status](https://github.com/chris-prener/disputeR/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/disputeR/actions)
 
 The goal of `disputeR` is to easily implement unit tests within functions and Shiny modules. Unlike other packages that provide frameworks for developing these tests, `disputeR` takes a different approach, offering pre-built unit tests that can easily be dropped into functions and test for basic requirements, like class, length, and common values used in function writing (such as `NULL`). These tests return informative error messages that follow the 'tidyverse' style guide's recommendations.
 
 ## Installation
 
-You can install the development version of disputeR from [GitHub](https://github.com/) with:
+You can install the development version of `disputeR` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
