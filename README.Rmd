@@ -30,7 +30,7 @@ remotes::install_github("chris-prener/disputeR")
 
 ## Basic Usage
 
-The following example creates a simple function for squaring a numeric value, which is passsed to the function using the parameter `x`. Two `disputeR` functions are added before squaring `x`. The first, `dis_not_missing()`, evaluates `x` to ensure the parameter is not skipped by the user. The second, `dis_numeric()`, applies a number of checks to `x`.
+The following example creates a simple function for squaring a numeric value, which is passed to the function using the parameter `x`. Two `disputeR` functions are added before squaring `x`. The first, `dis_not_missing()`, evaluates `x` to ensure the parameter is not skipped by the user. The second, `dis_numeric()`, applies a number of checks to `x`.
 
 ```{r}
 ## load package
@@ -136,6 +136,26 @@ example(x = "spam")
 ```
 
 The `valid` argument works the same way with `dis_numeric()`, passing either integer or numeric values to `valid` instead of character data.
+
+## Developing with disputeR
+
+There are two functions that are designed for modifying the developer experience. The first is `dis_fact_check()`. If you are working on a Shiny app in particular and include `disputeR` functions in your modules or functions, setting this function to `FALSE` at the beginning of `global.R` or `app.R` will stop the core functions (`dis_character()`, `dis_logical()`, `dis_not_missing()`, and `dis_numeric()`) from executing the vast majority of their checks. 
+
+```r
+# beginning of global.R or app.R
+dis_fact_check(fact_check = FALSE)
+```
+
+This is useful in situations where you have completed development of the app and have all functions specified correctly. In that instance, `disputeR` does not add much to your app except milliseconds of execution time. Turning fact checking off saves most of those milliseconds for your end users. This can be overridden on a function call by function call basis with the `fact_check` argument, allowing you to selectively use `disputeR` on user inputs while disabling it elsewhere in your app.
+
+If you run into issues with one of your functions or modules, simply comment out `dis_fact_check()` and restart your `R` session to get the benefits of `disputeR` back.
+
+The `dis_dev_check()` function is also designed to save your end users milliseconds of execution time when `disputeR` and is particularly aimed at package developers. Since end users will not be interacting with `disputeR` directly, the logic checks on `disputeR`'s own functions are disabled by default. This is done to save your end users execution time, but comes at the expense of the package developer's experience. Using `dis_dev_check()` and setting it to `TRUE` will allow `disptueR` to validate its own parameters, easing your own use of the package as a developer.
+
+```r
+# beginning of development session
+dis_dev_check(dev_check = TRUE)
+```
 
 ## Code of Conduct
   

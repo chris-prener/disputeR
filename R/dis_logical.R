@@ -78,7 +78,7 @@ dis_logical <- function(x, null_valid = TRUE, scalar = TRUE, param = NULL,
     }
 
     ## check inputs
-    if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
+    if (Sys.getenv(x = "DISPUTER_DEV_CHECK") == "TRUE"){
 
       ### check call
       dis_environment(call)

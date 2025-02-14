@@ -48,7 +48,7 @@ dis_environment <- function(x, param = "call", call = rlang::caller_env(),
                             fact_check = "global"){
 
   ## check inputs if FACT_CHECK is not FALSE
-  if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
+  if (Sys.getenv(x = "DISPUTER_DEV_CHECK") == "TRUE"){
 
     ### check call
     if (!is.environment(call)){

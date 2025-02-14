@@ -312,7 +312,7 @@ dis_msg_valid <- function(){
 dis_msg_env <- function(x, param = "call", call = rlang::caller_env()){
 
   ## check inputs if FACT_CHECK is not FALSE
-  if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
+  if (Sys.getenv(x = "DISPUTER_DEV_CHECK") == "TRUE"){
 
     ### check call
     if (!is.environment(call)){

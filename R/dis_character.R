@@ -85,7 +85,7 @@ dis_character <- function(x, valid = NULL, null_valid = TRUE, empty_valid = FALS
     }
 
     ## check inputs if DISPUTER_DEV_CHECK == TRUE
-    if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
+    if (Sys.getenv(x = "DISPUTER_DEV_CHECK") == "TRUE"){
 
       ### check call
       dis_environment(call)

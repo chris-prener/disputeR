@@ -28,7 +28,7 @@
 dis_indefinite <- function(x, indefinite_class = NULL){
 
   ## check inputs if FACT_CHECK is not FALSE
-  if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
+  if (Sys.getenv(x = "DISPUTER_DEV_CHECK") == "TRUE"){
 
     ### check x
     if (rlang::is_missing(x)){
