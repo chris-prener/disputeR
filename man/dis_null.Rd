@@ -34,6 +34,14 @@ This function will return an error message for \code{NULL} parameters
     that are not allowed to be \code{NULL}. Otherwise, no output is returned.
 }
 \description{
-This function returns a standard error message for \code{NULL} parameters
-    that are not allowed to be \code{NULL}, i.e. if \code{null_valid = FALSE}.
+This function returns a standard error message for \code{NULL}
+    parameters that are not allowed to be \code{NULL}, i.e. if
+    \code{null_valid = FALSE}.
+}
+\details{
+See the vignette on \code{vignette("developing", package = "disputeR")}
+    for details about internal validation of arguments for this function. Unlike
+    the core functions, \code{dis_param} does not have a \code{fact_check}
+    argument. The \code{vignette("developing", package = "disputeR")} vignette
+    includes details on how to implement that functionality around \code{dis_param}.
 }

@@ -4,7 +4,8 @@
 \alias{dis_not_missing}
 \title{Validate Whether Parameter is Missing}
 \usage{
-dis_not_missing(.f, param = "x", call = rlang::caller_env())
+dis_not_missing(.f, param = "x", call = rlang::caller_env(),
+    fact_check = "global")
 }
 \arguments{
 \item{.f}{Required logical scalar; the output of \code{missing(x))} or
@@ -24,6 +25,14 @@ provide the calling environment to ensure the correct environment is referenced
 using \code{rlang::caller_env()} (default). If there are multiple levels of
 nesting, the \code{call} argument can be used to pass an environment created
 in the outermost function.}
+
+\item{fact_check}{Required character scalar; whether to override fact checking
+environment setting. If \code{"global"} (default), \code{dis_character} will
+follow the global setting. If \code{"always"}, \code{dis_character} will
+ignore any global setting and will always check \code{x}. This argument is
+primarily intended for Shiny developers who wish to use \code{disputeR} in
+modules. See the vignette on \code{vignette("developing", package = "disputeR")}
+for details on how to use this function.}
 }
 \value{
 This function will return either \code{TRUE} (if the input passes
@@ -33,9 +42,8 @@ This function will return either \code{TRUE} (if the input passes
 This function returns a standard error message for missing parameters.
 }
 \details{
-See the vignette on \code{vignette("performance", package = "disputeR")}
-    for details about how to skip internal validation of arguments for this
-    function.
+See the vignette on \code{vignette("developing", package = "disputeR")}
+    for details about internal validation of arguments for this function.
 }
 \examples{
 # create example function that uses dis_param()

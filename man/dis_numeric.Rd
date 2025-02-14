@@ -6,7 +6,7 @@
 \usage{
 dis_numeric(x, valid = NULL, null_valid = TRUE, na_valid = FALSE,
     nan_valid = FALSE, infinite_valid = FALSE, integer = FALSE, scalar = TRUE,
-    param = NULL, call = NULL)
+    param = NULL, call = NULL, fact_check = "global")
 }
 \arguments{
 \item{x}{Required object; a parameter argument to test.}
@@ -47,6 +47,14 @@ If \code{NULL} (default), the function will attempt to determine the calling
 environment. If nesting functions, it is recommended to provide the calling
 environment to ensure the correct environment is referenced using
 \code{rlang::caller_env()}.}
+
+\item{fact_check}{Required character scalar; whether to override fact checking
+environment setting. If \code{"global"} (default), \code{dis_character} will
+follow the global setting. If \code{"always"}, \code{dis_character} will
+ignore any global setting and will always check \code{x}. This argument is
+primarily intended for Shiny developers who wish to use \code{disputeR} in
+modules. See the vignette on \code{vignette("developing", package = "disputeR")}
+for details on how to use this function.}
 }
 \value{
 This function will return either \code{TRUE} (if the input passes
@@ -58,6 +66,10 @@ This function will return either \code{TRUE} (if the input passes
 \description{
 This function runs standard unit tests on numeric and integer
     parameters for functions.
+}
+\details{
+See the vignette on \code{vignette("developing", package = "disputeR")}
+    for details about internal validation of arguments for this function.
 }
 \examples{
 # create example function that uses dis_numeric()

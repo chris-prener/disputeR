@@ -9,13 +9,14 @@ reference:
     contents:
     - dis_character
     - dis_logical
+    - dis_not_missing
     - dis_numeric
 
   - title: "Building Blocks"
     desc: "Modular functions for custom unit tests"
     contents:
+    - dis_checker
     - dis_environment
-    - dis_not_missing
     - dis_null
     - dis_param
 
@@ -28,3 +29,8 @@ reference:
     - dis_msg_miss
     - dis_msg_scalar
     - dis_msg_valid
+
+  - title: "Developer Tools"
+    desc: "Setting disputeR's global variables"
+    - dis_dev_check
+    - dis_fact_check

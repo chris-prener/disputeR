@@ -4,7 +4,8 @@
 \alias{dis_environment}
 \title{Validate Call Argument}
 \usage{
-dis_environment(x, param = "call", call = rlang::caller_env())
+dis_environment(x, param = "call", call = rlang::caller_env(),
+    fact_check = "global")
 }
 \arguments{
 \item{x}{Required object; a parameter argument to test.}
@@ -19,6 +20,14 @@ the calling environment to ensure the correct environment is referenced using
 \code{rlang::caller_env()} (default). If there are multiple levels of nesting,
 the \code{call} argument should be used to pass an environment created in the
 outermost function.}
+
+\item{fact_check}{Required character scalar; whether to override fact checking
+environment setting. If \code{"global"} (default), \code{dis_character} will
+follow the global setting. If \code{"always"}, \code{dis_character} will
+ignore any global setting and will always check \code{x}. This argument is
+primarily intended for Shiny developers who wish to use \code{disputeR} in
+modules. See the vignette on \code{vignette("developing", package = "disputeR")}
+for details on how to use this function.}
 }
 \value{
 This function will return either \code{TRUE} (if the input passes
@@ -30,9 +39,11 @@ This function returns a standard error message for invalid \code{call}
     pass the environment of the function being checked.
 }
 \details{
-See the vignette on \code{vignette("performance", package = "disputeR")}
-    for details about how to skip internal validation of arguments for this
-    function.
+See the vignette on \code{vignette("developing", package = "disputeR")}
+    for details about internal validation of arguments for this function. Unlike
+    the core functions, \code{dis_param} does not have a \code{fact_check}
+    argument. The \code{vignette("developing", package = "disputeR")} vignette
+    includes details on how to implement that functionality around \code{dis_param}.
 }
 \examples{
 # create example function that uses dis_param()

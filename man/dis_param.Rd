@@ -30,9 +30,11 @@ This function returns a standard error message for invalid \code{param}
     pass the name of the parameter being checked.
 }
 \details{
-See the vignette on \code{vignette("performance", package = "disputeR")}
-    for details about how to skip internal validation of arguments for this
-    function.
+See the vignette on \code{vignette("developing", package = "disputeR")}
+    for details about internal validation of arguments for this function. Unlike
+    the core functions, \code{dis_param} does not have a \code{fact_check}
+    argument. The \code{vignette("developing", package = "disputeR")} vignette
+    includes details on how to implement that functionality around \code{dis_param}.
 }
 \examples{
 # create example function that uses dis_param()

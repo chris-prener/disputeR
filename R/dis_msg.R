@@ -51,9 +51,11 @@ dis_msg_miss <- function(){
 #'
 #' @return A character string with the default message.
 #'
-#' @details See the vignette on \code{vignette("performance", package = "disputeR")}
-#'     for details about how to skip internal validation of arguments for this
-#'     function.
+#' @details See the vignette on \code{vignette("developing", package = "disputeR")}
+#'     for details about internal validation of arguments for this function. Unlike
+#'     the core functions, \code{dis_param} does not have a \code{fact_check}
+#'     argument. The \code{vignette("developing", package = "disputeR")} vignette
+#'     includes details on how to implement that functionality around \code{dis_param}.
 #'
 #' @examples
 #' dis_msg_class(x = "test", class = "integer", type = "scalar",
@@ -63,7 +65,7 @@ dis_msg_miss <- function(){
 dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::caller_env()){
 
   ## check inputs if FACT_CHECK is not FALSE
-  if (!isFALSE(Sys.getenv(x = "FACT_CHECK"))){
+  if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
 
     ### check call
     if (!is.environment(call)){
@@ -172,9 +174,11 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
 #'
 #' @return A character string with the default message.
 #'
-#' @details See the vignette on \code{vignette("performance", package = "disputeR")}
-#'     for details about how to skip internal validation of arguments for this
-#'     function.
+#' @details See the vignette on \code{vignette("developing", package = "disputeR")}
+#'     for details about internal validation of arguments for this function. Unlike
+#'     the core functions, \code{dis_param} does not have a \code{fact_check}
+#'     argument. The \code{vignette("developing", package = "disputeR")} vignette
+#'     includes details on how to implement that functionality around \code{dis_param}.
 #'
 #' @examples
 #' dis_msg_scalar(class = "integer", stem = "{.code {param} = 1}")
@@ -183,7 +187,7 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
 dis_msg_scalar <- function(class, stem, param = "param", call = rlang::caller_env()){
 
   ## check inputs if FACT_CHECK is not FALSE
-  if (!isFALSE(Sys.getenv(x = "FACT_CHECK"))){
+  if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
 
     ### check call
     if (!is.environment(call)){
@@ -295,6 +299,12 @@ dis_msg_valid <- function(){
 #'
 #' @return A character string with the default message.
 #'
+#' @details See the vignette on \code{vignette("developing", package = "disputeR")}
+#'     for details about internal validation of arguments for this function. Unlike
+#'     the core functions, \code{dis_param} does not have a \code{fact_check}
+#'     argument. The \code{vignette("developing", package = "disputeR")} vignette
+#'     includes details on how to implement that functionality around \code{dis_param}.
+#'
 #' @examples
 #' dis_msg_env(x = "character", param = "call")
 #'
@@ -302,7 +312,7 @@ dis_msg_valid <- function(){
 dis_msg_env <- function(x, param = "call", call = rlang::caller_env()){
 
   ## check inputs if FACT_CHECK is not FALSE
-  if (!isFALSE(Sys.getenv(x = "FACT_CHECK"))){
+  if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
 
     ### check call
     if (!is.environment(call)){

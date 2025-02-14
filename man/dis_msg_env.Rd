@@ -26,6 +26,13 @@ A character string with the default message.
 Create the default message used when an object passed to an
     environment parameter does not have the correct class.
 }
+\details{
+See the vignette on \code{vignette("developing", package = "disputeR")}
+    for details about internal validation of arguments for this function. Unlike
+    the core functions, \code{dis_param} does not have a \code{fact_check}
+    argument. The \code{vignette("developing", package = "disputeR")} vignette
+    includes details on how to implement that functionality around \code{dis_param}.
+}
 \examples{
 dis_msg_env(x = "character", param = "call")
 
