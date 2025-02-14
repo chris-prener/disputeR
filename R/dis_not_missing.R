@@ -69,7 +69,7 @@ dis_not_missing <- function(.f, param = "x", call = rlang::caller_env()){
   }
 
   ## return error if missing
-  if (missing(.f)){
+  if (isTRUE(.f)){
     cli::cli_abort(
       message = c(
         "{.code {param}} must be provided but is missing.",
