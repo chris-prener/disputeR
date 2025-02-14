@@ -74,7 +74,9 @@ issue:
 
 ``` r
 example()
-#> Error in example(): argument "x" is missing, with no default
+#> Error in `example()`:
+#> ! `x` must be provided but is missing.
+#> ℹ Add an argument for `x` to the function call.
 ```
 
 Likewise, if `x` is incorrectly specified (such as with a
@@ -83,9 +85,9 @@ instructions for fixing the error is returned:
 
 ``` r
 example(x = "test")
-#> Error in `example()`:
-#> ! `x` must be a <numeric> scalar, not a <character> scalar.
-#> ℹ Provide a <numeric> scalar for `x`, such as `x = 1`.
+#> Error in `dis_msg_class()`:
+#> ! `param` must be provided but is missing.
+#> ℹ Add an argument for `param` to the function call.
 ```
 
 A similar approach can be taken for both character and logical
@@ -126,10 +128,9 @@ example(x = 2.25, round = TRUE)
 
 ## error found
 example(x = 2.25, round = "yes")
-#> Error in `example()`:
-#> ! `round` must be a <logical> scalar, not a <character> scalar.
-#> ℹ Provide a <logical> scalar for `round`, such as `round = TRUE` or `round =
-#>   FALSE`.
+#> Error in `dis_msg_class()`:
+#> ! `param` must be provided but is missing.
+#> ℹ Add an argument for `param` to the function call.
 ```
 
 Both `dis_numeric()` and `dis_character()` also accept strings of valid
@@ -169,7 +170,7 @@ example(x = "spam")
 ```
 
 The `valid` argument works the same way with `dis_numeric()`, passing
-either integer or numeric values to `valid` instead of characters.
+either integer or numeric values to `valid` instead of character data.
 
 ## Code of Conduct
 
