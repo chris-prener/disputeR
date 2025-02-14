@@ -126,7 +126,10 @@ example(x = 2.25, round = TRUE)
 
 ## error found
 example(x = 2.25, round = "yes")
-#> [1] 5.0625
+#> Error in `example()`:
+#> ! `yes` must be a <logical> scalar, not a <character> scalar.
+#> ℹ Provide a <logical> scalar for `yes`, such as `round = TRUE` or `round =
+#>   FALSE`.
 ```
 
 Both `dis_numeric()` and `dis_character()` also accept strings of valid
@@ -165,7 +168,8 @@ example(x = "spam")
 #> ℹ Valid arguments for `x` are: `ham`, `eggs`, and `bacon`.
 ```
 
-The `valid` argument works the same way with `dis_numeric()`.
+The `valid` argument works the same way with `dis_numeric()`, passing
+either integer or numeric values to `valid` instead of characters.
 
 ## Code of Conduct
 
