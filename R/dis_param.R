@@ -60,7 +60,7 @@ dis_param <- function(x, param = "param", call = rlang::caller_env()){
     }
 
     ### check x
-    if (missing(x)){
+    if (rlang::is_missing(x)){
       cli::cli_abort(
         message = dis_msg_miss(),
         call = call

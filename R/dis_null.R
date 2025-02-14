@@ -40,10 +40,10 @@ dis_null <- function(x, class, null_valid, param = rlang::caller_arg(x),
     dis_param(param)
 
     ### check x
-    dis_not_missing(.f = missing(x), param = "x")
+    dis_not_missing(.f = rlang::is_missing(x), param = "x")
 
     ### check class
-    dis_not_missing(.f = missing(class), param = "class")
+    dis_not_missing(.f = rlang::is_missing(class), param = "class")
 
     if (!is.character(class) | length(class) != 1){
       cli::cli_abort(
@@ -58,7 +58,7 @@ dis_null <- function(x, class, null_valid, param = rlang::caller_arg(x),
     }
 
     ### check null_valid
-    dis_not_missing(.f = missing(null_valid), param = "null_valid")
+    dis_not_missing(.f = rlang::is_missing(null_valid), param = "null_valid")
 
     if (!is.logical(null_valid) | length(null_valid) != 1){
       cli::cli_abort(

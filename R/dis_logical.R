@@ -32,7 +32,7 @@
 #' example <- function(x){
 #'
 #'   ## check inputs with disputeR
-#'   dis_not_missing(.f = missing(x))
+#'   dis_not_missing(.f = rlang::is_missing(x))
 #'   dis_logical(x, null_valid = FALSE)
 #'
 #'   ## flip logical input
@@ -68,7 +68,7 @@ dis_logical <- function(x, null_valid = TRUE, scalar = TRUE, param = NULL, call 
     dis_param(param)
 
     ### check x
-    dis_not_missing(.f = missing(x))
+    dis_not_missing(.f = rlang::is_missing(x))
 
     ### check null_valid
     stem <- "{.code {null_valid} = TRUE} or {.code {null_valid} = FALSE}"

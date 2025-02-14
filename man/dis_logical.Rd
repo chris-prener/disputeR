@@ -43,7 +43,7 @@ This function runs standard unit tests on logical parameters for
 example <- function(x){
 
   ## check inputs with disputeR
-  dis_not_missing(.f = missing(x))
+  dis_not_missing(.f = rlang::is_missing(x))
   dis_logical(x, null_valid = FALSE)
 
   ## flip logical input

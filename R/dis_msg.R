@@ -73,7 +73,7 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
     }
 
     ### check param
-    dis_not_missing(.f = missing(param), param = "param")
+    dis_not_missing(.f = rlang::is_missing(param), param = "param")
 
     if (!is.character(param) | length(param) != 1){
       cli::cli_abort(
@@ -88,10 +88,10 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
     }
 
     ### check x
-    dis_not_missing(.f = missing(x))
+    dis_not_missing(.f = rlang::is_missing(x))
 
     ### check class
-    dis_not_missing(.f = missing(class), param = "class")
+    dis_not_missing(.f = rlang::is_missing(class), param = "class")
 
     if (!is.character(class) | length(class) != 1){
       cli::cli_abort(
@@ -106,7 +106,7 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
     }
 
     ### check valid inputs for type
-    dis_not_missing(.f = missing(type), param = "type")
+    dis_not_missing(.f = rlang::is_missing(type), param = "type")
 
     valid <- c("scalar", "vector", "object")
 
@@ -121,7 +121,7 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
     }
 
     ### check stem
-    dis_not_missing(.f = missing(stem), param = "stem")
+    dis_not_missing(.f = rlang::is_missing(stem), param = "stem")
 
     if (!is.character(stem) | length(stem) != 1){
       cli::cli_abort(
@@ -193,7 +193,7 @@ dis_msg_scalar <- function(class, stem, param = "param", call = rlang::caller_en
     }
 
     ### check param
-    dis_not_missing(.f = missing(param), param = "param")
+    dis_not_missing(.f = rlang::is_missing(param), param = "param")
 
     if (!is.character(param) | length(param) != 1){
       cli::cli_abort(
@@ -208,7 +208,7 @@ dis_msg_scalar <- function(class, stem, param = "param", call = rlang::caller_en
     }
 
     ### check class
-    dis_not_missing(.f = missing(class), param = "class")
+    dis_not_missing(.f = rlang::is_missing(class), param = "class")
 
     if (!is.character(class) | length(class) != 1){
       cli::cli_abort(
@@ -223,7 +223,7 @@ dis_msg_scalar <- function(class, stem, param = "param", call = rlang::caller_en
     }
 
     ### check stem
-    dis_not_missing(.f = missing(stem), param = "stem")
+    dis_not_missing(.f = rlang::is_missing(stem), param = "stem")
 
     if (!is.character(stem) | length(stem) != 1){
       cli::cli_abort(
@@ -312,10 +312,10 @@ dis_msg_env <- function(x, param = "call", call = rlang::caller_env()){
     }
 
     ### check param
-    dis_not_missing(.f = missing(x))
+    dis_not_missing(.f = rlang::is_missing(x))
 
     ### check param
-    dis_not_missing(.f = missing(param), param = "class")
+    dis_not_missing(.f = rlang::is_missing(param), param = "class")
 
     if (!is.character(param) | length(param) != 1){
       cli::cli_abort(

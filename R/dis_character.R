@@ -37,7 +37,7 @@
 #' example <- function(x){
 #'
 #'   ## check inputs with disputeR
-#'   dis_not_missing(.f = missing(x))
+#'   dis_not_missing(.f = rlang::is_missing(x))
 #'   dis_character(x, null_valid = FALSE)
 #'
 #'   ## modify string
@@ -74,7 +74,7 @@ dis_character <- function(x, valid = NULL, null_valid = TRUE, empty_valid = FALS
     dis_param(param)
 
     ### check x
-    dis_not_missing(.f = missing(x))
+    dis_not_missing(.f = rlang::is_missing(x))
 
     ### check valid
     if (!is.null(valid) & !is.character(valid)){

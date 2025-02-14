@@ -4,8 +4,9 @@
 #'
 #' @usage dis_not_missing(.f, param = "x", call = rlang::caller_env())
 #'
-#' @param .f Required logical scalar; the output of \code{missing(x))}
-#'     (or other parameter name)
+#' @param .f Required logical scalar; the output of \code{missing(x))} or
+#'     \code{rlang::is_missing(x)}, substituting the parameter name passed to
+#'     either function as needed.
 #' @param param Required character scalar; the parameter name. The default uses
 #'     the variable name \code{x}, but this value can be set to a different
 #'     static character scalar. Alternatively, you can use \code{rlang::caller_arg()}
@@ -29,7 +30,7 @@
 #' @examples
 #' # create example function that uses dis_param()
 #' example <- function(x){
-#'   dis_not_missing(.f = missing(x))
+#'   dis_not_missing(.f = rlang::is_missing(x))
 #' }
 #'
 #' # example function
@@ -37,7 +38,7 @@
 #'
 #' # create example function that uses dis_param() with different variable name
 #' example <- function(var){
-#'   dis_not_missing(.f = missing(var), param = "var")
+#'   dis_not_missing(.f = rlang::is_missing(var), param = "var")
 #' }
 #'
 #' # example function
@@ -56,7 +57,7 @@ dis_not_missing <- function(.f, param = "x", call = rlang::caller_env()){
     dis_param(param)
 
     ### check .f
-    if (missing(.f)){
+    if (rlang::is_missing(.f)){
       cli::cli_abort(
         message = c(
           "{.code {.f}} must be provided but is missing.",

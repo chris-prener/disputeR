@@ -7,8 +7,9 @@
 dis_not_missing(.f, param = "x", call = rlang::caller_env())
 }
 \arguments{
-\item{.f}{Required logical scalar; the output of \code{missing(x))}
-(or other parameter name)}
+\item{.f}{Required logical scalar; the output of \code{missing(x))} or
+\code{rlang::is_missing(x)}, substituting the parameter name passed to
+either function as needed.}
 
 \item{param}{Required character scalar; the parameter name. The default uses
 the variable name \code{x}, but this value can be set to a different
@@ -39,7 +40,7 @@ See the vignette on \code{vignette("performance", package = "disputeR")}
 \examples{
 # create example function that uses dis_param()
 example <- function(x){
-  dis_not_missing(.f = missing(x))
+  dis_not_missing(.f = rlang::is_missing(x))
 }
 
 # example function
@@ -47,7 +48,7 @@ example(x = "test")
 
 # create example function that uses dis_param() with different variable name
 example <- function(var){
-  dis_not_missing(.f = missing(var), param = "var")
+  dis_not_missing(.f = rlang::is_missing(var), param = "var")
 }
 
 # example function

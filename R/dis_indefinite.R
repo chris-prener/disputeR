@@ -25,7 +25,7 @@ dis_indefinite <- function(x, indefinite_class = NULL){
   if (!isFALSE(Sys.getenv(x = "FACT_CHECK"))){
 
     ### check x
-    if (missing(x)){
+    if (rlang::is_missing(x)){
       cli::cli_abort(
         message = dis_msg_miss(),
         arg = "x", call = call

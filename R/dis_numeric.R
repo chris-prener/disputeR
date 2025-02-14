@@ -48,7 +48,7 @@
 #' example <- function(x){
 #'
 #'   ## check inputs with disputeR
-#'   dis_not_missing(.f = missing(x))
+#'   dis_not_missing(.f = rlang::is_missing(x))
 #'   dis_numeric(x, null_valid = FALSE)
 #'
 #'   ## square
@@ -87,7 +87,7 @@ dis_numeric <- function(x, valid = NULL, null_valid = TRUE, na_valid = FALSE,
     dis_param(param)
 
     ### check x
-    dis_not_missing(.f = missing(x))
+    dis_not_missing(.f = rlang::is_missing(x))
 
     ### check valid
     if (!is.null(valid)){
