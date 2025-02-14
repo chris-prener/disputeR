@@ -49,8 +49,6 @@
 #' @export
 dis_logical <- function(x, null_valid = TRUE, scalar = TRUE, param = NULL, call = NULL){
 
-  browser()
-
   ## store environment and parameter name if not provided
   if (is.null(param)){
     param <- rlang::caller_arg(x)
