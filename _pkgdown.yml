@@ -7,7 +7,6 @@ reference:
   - title: "Core Argument Validation"
     desc: "Primary unit tests for validating arguments"
     contents:
-    - dis_df
     - dis_character
     - dis_logical
     - dis_numeric
