@@ -136,7 +136,7 @@ example(x = "bacon")
 example(x = "spam")
 ```
 
-The `valid` argument works the same way with `dis_numeric()`, passing either integer or numeric values to `valid` instead of character data.
+The `valid` argument works the same way with `dis_numeric()`, passing either integer or numeric values to `valid` instead of characters.
 
 ## Code of Conduct
   
