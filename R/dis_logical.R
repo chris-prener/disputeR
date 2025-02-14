@@ -49,6 +49,8 @@
 #' @export
 dis_logical <- function(x, null_valid = TRUE, scalar = TRUE, param = NULL, call = NULL){
 
+  browser()
+
   ## store environment and parameter name if not provided
   if (is.null(param)){
     param <- rlang::caller_arg(x)
@@ -141,25 +143,25 @@ dis_logical <- function(x, null_valid = TRUE, scalar = TRUE, param = NULL, call 
       stem <- "{.code {param} = TRUE} or {.code {param} = c(TRUE, FALSE)}."
     }
 
-    if (!is.logical(scalar)){
+    if (!is.logical(x)){
       cli::cli_abort(
         message = dis_msg_class(
           x = scalar,
           class = "logical",
           type = type,
           stem = stem,
-          param = "scalar"
+          param = "x"
         ),
         call = call
       )
     }
 
-    if (length(scalar) != 1){
+    if (length(x) != 1){
       cli::cli_abort(
         message = dis_msg_scalar(
           class = "logical",
           stem = stem,
-          param = "scalar"
+          param = "x"
         ),
         call = call
       )

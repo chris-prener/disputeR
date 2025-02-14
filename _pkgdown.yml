@@ -1,0 +1,31 @@
+url: https://chris-prener.github.io/disputeR/
+
+template:
+  bootstrap: 5
+
+reference:
+  - title: "Core Argument Validation"
+    desc: "Primary unit tests for validating arguments"
+    contents:
+    - dis_df
+    - dis_character
+    - dis_logical
+    - dis_numeric
+
+  - title: "Building Blocks"
+    desc: "Modular functions for custom unit tests"
+    contents:
+    - dis_environment
+    - dis_not_missing
+    - dis_null
+    - dis_param
+
+  - title: "Helper Functions"
+    desc: "Other tools for creating error messages"
+    contents:
+    - dis_indefinite
+    - dis_msg_class
+    - dis_msg_env
+    - dis_msg_miss
+    - dis_msg_scalar
+    - dis_msg_valid

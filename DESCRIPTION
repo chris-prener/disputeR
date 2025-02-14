@@ -1,20 +1,30 @@
 Package: disputeR
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: Opinionated Approach to Validating Function Arguments
+Version: 0.1.0.9000
 Authors@R: c(
-    person(
-      "Jane", "Doe",
-      email = "jane@example.com",
-      role = c("aut", "cre")
+      person(
+        given = "Christopher", family = "Prener", email = "chris.prener@gmail.com", 
+        role = c("aut", "cre"), comment = c(ORCID = "0000-0002-4310-9888")
+      ),
+      person(
+        given = "Timothy", family = "Wiemken", 
+        role = "aut", comment = c(ORCID = "0000-0002-8251-3007")
+      )
     )
-  )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: LGPL (>= 3)
+Description: A number of packages exist to implement unit tests, either
+    generally within R or specifically for functions. Most of these packages 
+    take a similar approach, providing users a framework with which they can 
+    write their own validation tests. In contrast, 'disputeR' provides
+    pre-written sets of tests that can be easily added to functions or Shiny
+    modules with minimal additional code. These tests return informative 
+    error messages that follow the 'tidyverse' style guide's recommendations.
+License: GPL (>= 3)
+URL: https://chris-prener.github.io/disputeR/, https://github.com/chris-prener/disputeR
+BugReports: https://github.com/chris-prener/disputeR/issues
 Encoding: UTF-8
 LazyData: true
 Imports:
-  cli,
-  rlang
+    cli,
+    rlang
 RoxygenNote: 7.3.2
