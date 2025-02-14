@@ -135,16 +135,16 @@ dis_logical <- function(x, null_valid = TRUE, scalar = TRUE, param = NULL, call 
     ### set error message info text
     if (isTRUE(scalar)){
       type <- "scalar"
-      stem <- "{.code {param} = TRUE} or {.arg {param} = FALSE}."
+      stem <- "{.code {param} = TRUE} or {.arg {param} = FALSE}"
     } else if (isFALSE(scalar)){
       type <- "vector"
-      stem <- "{.code {param} = TRUE} or {.code {param} = c(TRUE, FALSE)}."
+      stem <- "{.code {param} = TRUE} or {.code {param} = c(TRUE, FALSE)}"
     }
 
     if (!is.logical(x)){
       cli::cli_abort(
         message = dis_msg_class(
-          x = scalar,
+          x = x,
           class = "logical",
           type = type,
           stem = stem,
