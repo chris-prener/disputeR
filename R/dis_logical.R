@@ -144,11 +144,10 @@ dis_logical <- function(x, null_valid = TRUE, scalar = TRUE, param = NULL, call 
     if (!is.logical(x)){
       cli::cli_abort(
         message = dis_msg_class(
-          x = x,
+          x,
           class = "logical",
           type = type,
-          stem = stem,
-          param = "x"
+          stem = stem
         ),
         call = call
       )

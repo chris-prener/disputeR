@@ -169,7 +169,7 @@ example(x = "spam")
 ```
 
 The `valid` argument works the same way with `dis_numeric()`, passing
-either integer or numeric values to `valid` instead of characters.
+either integer or numeric values to `valid` instead of character data.
 
 ## Code of Conduct
 
