@@ -8,6 +8,7 @@ reference:
     desc: "Primary unit tests for validating arguments"
     contents:
     - dis_character
+    - dis_df
     - dis_logical
     - dis_not_missing
     - dis_numeric

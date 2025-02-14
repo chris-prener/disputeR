@@ -180,8 +180,8 @@ experience. The first is `dis_fact_check()`. If you are working on a
 Shiny app in particular and include `disputeR` functions in your modules
 or functions, setting this function to `FALSE` at the beginning of
 `global.R` or `app.R` will stop the core functions (`dis_character()`,
-`dis_logical()`, `dis_not_missing()`, and `dis_numeric()`) from
-executing the vast majority of their checks.
+`dis_df()`, `dis_logical()`, `dis_not_missing()`, and `dis_numeric()`)
+from executing the vast majority of their checks.
 
 ``` r
 # beginning of global.R or app.R

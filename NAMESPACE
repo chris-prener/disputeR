@@ -3,6 +3,7 @@
 export(dis_character)
 export(dis_checker)
 export(dis_dev_check)
+export(dis_df)
 export(dis_environment)
 export(dis_fact_check)
 export(dis_indefinite)

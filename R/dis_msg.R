@@ -74,7 +74,7 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
       )
     }
 
-    ### check param
+    ### check param - this is recursive
     dis_not_missing(.f = rlang::is_missing(param), param = "param")
 
     if (!is.character(param) | length(param) != 1){
@@ -92,7 +92,7 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
     ### check x
     dis_not_missing(.f = rlang::is_missing(x))
 
-    ### check class
+    ### check class - this is recursive
     dis_not_missing(.f = rlang::is_missing(class), param = "class")
 
     if (!is.character(class) | length(class) != 1){
@@ -122,7 +122,7 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
       )
     }
 
-    ### check stem
+    ### check stem - this is recursive
     dis_not_missing(.f = rlang::is_missing(stem), param = "stem")
 
     if (!is.character(stem) | length(stem) != 1){
