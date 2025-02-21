@@ -146,10 +146,9 @@ dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
             if (isTRUE(valid_longlat)){
               cli::cli_abort(
                 message = c(
-                  "{.arg {param}} must have geographic coordinate system such as NAD83 or WGS84, not {.code {sf::st_crs(x)$epsg}} ({.code {sf::st_crs(x)$input}}).",
+                  "{.arg {param}} must have geographic coordinate system such as WGS84, not {.code {sf::st_crs(x)$epsg}} ({.code {sf::st_crs(x)$input}}).",
                   "i" = "Use {.code sf::st_transform({param}, crs = 4326)} to re-project your data to WGS84.",
-                  "i" = "Use {.code sf::st_transform({param}, crs = 4269)} to re-project your data to NAD83",
-                  "i" = "Websites like {.url https://epsg.io} are helpful resources for appropriate coordinate systems."
+                  "i" = "Websites like {.url https://epsg.io} are helpful resources for finding appropriate coordinate systems."
                 ),
                 call = call
               )
@@ -157,7 +156,6 @@ dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
               cli::cli_abort(
                 message = c(
                   "{.arg {param}} must have projected coordinate system, not {.code {sf::st_crs(x)$epsg}} ({.code {sf::st_crs(x)$input}}).",
-                  "i" = "Use {.code sf::st_transform()} to re-project your data to a projected coordinate system that is appropriate for your data.",
                   "i" = "Use {.code sf::st_transform()} to re-project your data to a projected coordinate system that is appropriate for your data.",
                   "i" = "Websites like {.url https://epsg.io} are helpful resources for finding appropriate coordinate systems."
                 ),
