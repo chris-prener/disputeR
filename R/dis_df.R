@@ -96,6 +96,9 @@ dis_df <- function(x, valid_class = c("data.frame", "tibble", "data.table"),
       dis_character(valid_class, valid = c("data.frame", "tibble", "data.table"),
                     scalar = FALSE, null_valid = FALSE)
 
+      ### check null_valid
+      dis_logical(null_valid)
+
     }
 
     ## unit tests
@@ -137,7 +140,7 @@ dis_df <- function(x, valid_class = c("data.frame", "tibble", "data.table"),
 
       bullets <- c(df_msg, tbl_msg, datatable_msg)
 
-      ### test that x is a base R data.frame and should not be
+      ### test that x is a base R data.frame
       if ((!"data.frame" %in% valid_class) & length(class(x)) > 1){
         cli::cli_abort(
           message = c(
@@ -149,7 +152,7 @@ dis_df <- function(x, valid_class = c("data.frame", "tibble", "data.table"),
         )
       }
 
-      ### test that x is a tibble and should not be
+      ### test that x is a tibble
       if ((!"tibble" %in% valid_class) & inherits(x, what = "tbl_df")){
         cli::cli_abort(
           message = c(
@@ -161,7 +164,7 @@ dis_df <- function(x, valid_class = c("data.frame", "tibble", "data.table"),
         )
       }
 
-      ### test that x is a data.table and should not be
+      ### test that x is a data.table
       if ((!"data.table" %in% valid_class) & inherits(x, what = "data.table")){
         cli::cli_abort(
           message = c(
