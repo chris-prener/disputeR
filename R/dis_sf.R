@@ -88,6 +88,19 @@ dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
 
       ### check null_valid
       dis_logical(null_valid)
+      dis_logical(valid_longlat)
+
+      ### check that valid_longlat and valid_crs cannot both be non-NULL
+      if (!is.null(valid_crs) & !is.null(valid_longlat)){
+        cli::cli_abort(
+          message = c(
+            "Only one of {.arg valid_crs} or {.arg valid_longlat} may be specified in a test.",
+            "i" = "The {.arg valid_crs} test is more restrictive, allowing only those {.code crs} values listed.",
+            "i" = "The {.arg valid_longlat} test is more flexible, allowing any coordinate system as long as it meets the test condition ({.code TRUE} for geographic coordinate systems or {.code FALSE} for projected coordinate systems."
+          ),
+          call = call
+        )
+      }
 
     }
 
