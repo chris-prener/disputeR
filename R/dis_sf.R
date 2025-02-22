@@ -48,7 +48,7 @@
 #' # example(x = sf)
 #'
 #' @export
-dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
+dis_sf <- function(x, valid_geometry_name = "geometry", valid_geometry_type = NULL,
                    valid_crs = NULL, valid_longlat = NULL,
                    null_valid = TRUE, param = NULL, call = NULL,
                    fact_check = "global"){
@@ -123,6 +123,15 @@ dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
       if (rlang::is_installed("sf")) {
 
         ### test that the expected geometry column name is used
+        if (attr(x, "sf_column") != valid_geometry_name){
+          cli::cli_abort(
+            message = c(
+              "{.arg {param}} must have a geometry column named {.arg {valid_geometry_name}}, not {.code {attr(x, 'sf_column')}}.",
+              "i" = "Change the {.code geometry} column name with {.code sf::st_geometry({param}) <- '{valid_geometry_name}'}."
+            ),
+            call = call
+          )
+        }
 
         ### test that object as valid geometry type
         if (!is.null(valid_geometry_type)){
@@ -159,18 +168,22 @@ dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
             if (isTRUE(valid_longlat)){
               cli::cli_abort(
                 message = c(
-                  "{.arg {param}} must have geographic coordinate system such as WGS84, not {.code {sf::st_crs(x)$epsg}} ({.code {sf::st_crs(x)$input}}).",
-                  "i" = "Use {.code sf::st_transform({param}, crs = 4326)} to re-project your data to WGS84.",
-                  "i" = "Websites like {.url https://epsg.io} are helpful resources for finding appropriate coordinate systems."
+                  "{.arg {param}} must have geographic coordinate system, not a projected coordinate system.",
+                  "i" = "Use {.code sf::st_crs({param})} to inspect your data's coordinate system.",
+                  "i" = "Use {.code sf::st_transform({param})} to re-project your data to a geographic coordinate system that is appropriate for your data.",
+                  "*" = "For example, if you wanted to use WGS84, you would use {.code {param} <- sf::st_transform({param}, crs = 4326)} to re-project your data.",
+                  "*" = "Websites like {.url https://epsg.io} are helpful resources for finding appropriate coordinate systems."
                 ),
                 call = call
               )
             } else {
               cli::cli_abort(
                 message = c(
-                  "{.arg {param}} must have projected coordinate system, not {.code {sf::st_crs(x)$epsg}} ({.code {sf::st_crs(x)$input}}).",
+                  "{.arg {param}} must have projected coordinate system, not a geographic coordinate system.",
+                  "i" = "Use {.code sf::st_crs({param})} to inspect your data's coordinate system.",
                   "i" = "Use {.code sf::st_transform()} to re-project your data to a projected coordinate system that is appropriate for your data.",
-                  "i" = "Websites like {.url https://epsg.io} are helpful resources for finding appropriate coordinate systems."
+                  "*" = "For example, if you wanted to use Winkel Tripel, you would use {.code {param} <- sf::st_transform({param}, crs = 'ESRI:53042')} to re-project your data.",
+                  "*" = "Websites like {.url https://epsg.io} are helpful resources for finding appropriate coordinate systems."
                 ),
                 call = call
               )
