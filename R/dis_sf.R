@@ -168,7 +168,7 @@ dis_sf <- function(x, valid_geometry_name = "geometry", valid_geometry_type = NU
             if (isTRUE(valid_longlat)){
               cli::cli_abort(
                 message = c(
-                  "{.arg {param}} must have geographic coordinate system, not a projected coordinate system.",
+                  "{.arg {param}} must use a geographic coordinate system, not a projected coordinate system.",
                   "i" = "Use {.code sf::st_crs({param})} to inspect your data's coordinate system.",
                   "i" = "Use {.code sf::st_transform({param})} to re-project your data to a geographic coordinate system that is appropriate for your data.",
                   "*" = "For example, if you wanted to use WGS84, you would use {.code {param} <- sf::st_transform({param}, crs = 4326)} to re-project your data.",
@@ -179,7 +179,7 @@ dis_sf <- function(x, valid_geometry_name = "geometry", valid_geometry_type = NU
             } else {
               cli::cli_abort(
                 message = c(
-                  "{.arg {param}} must have projected coordinate system, not a geographic coordinate system.",
+                  "{.arg {param}} must use a projected coordinate system, not a geographic coordinate system.",
                   "i" = "Use {.code sf::st_crs({param})} to inspect your data's coordinate system.",
                   "i" = "Use {.code sf::st_transform()} to re-project your data to a projected coordinate system that is appropriate for your data.",
                   "*" = "For example, if you wanted to use Winkel Tripel, you would use {.code {param} <- sf::st_transform({param}, crs = 'ESRI:53042')} to re-project your data.",
