@@ -1,13 +1,49 @@
 #' Validate sf Object Arguments
 #'
 #' @description This function runs standard unit tests on sf object parameters for
-#'     functions.
+#'     functions. If the suggested \code{sf} package is not installed, it will only
+#'     test that \code{x} is an object of class \code{sf}. The remaining checks for
+#'     geometry column name, geometry type, crs, and whether or not a geographic
+#'     coordinate system is acceptable all require that the \code{sf} package
+#'     is installed.
 #'
 #' @usage dis_sf(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
-#'     valid_crs = NULL, valid_longlat = NULL,
-#'     null_valid = TRUE, param = NULL, call = NULL, fact_check = "global")
+#'     valid_crs = NULL, valid_longlat = NULL, null_valid = TRUE, param = NULL,
+#'     call = NULL, fact_check = "global")
 #'
 #' @param x Required object; a parameter argument to test.
+#' @param valid_geometry_name Optional character scalar; required name for the
+#'     geometry column. If \code{NULL} (default), any name is permissible. If a
+#'     character string is included (i.e. \code{"geometry"}, the typical name of
+#'     a geometry column), the \code{sf} object must have a geometry column
+#'     whose name matches the argument. This test requires that \code{sf} is
+#'     installed.
+#' @param valid_geometry_type Optional character scalar; required geometry type(s)
+#'     for \code{x}. The most common are \code{"POINT"}, \code{"LINESTRING"}, and
+#'     \code{"POLYGON"} as well as the \code{"MULTI"} versions of each
+#'     (\code{"MULTIPOINT"}, \code{"MULTILINESTRING"}, and \code{"MULTIPOLYGON"}).
+#'
+#'     Other valid geometry types are \code{"GEOMETRY"} and \code{"GEOMETRYCOLLECTION"},
+#'     which is used for "geometry collections." However, you should note that
+#'     geometry collections will cause errors with some spatial data operations.
+#'
+#'     Less common geometry types include \code{"CIRCULARSTRING"}, \code{"COMPOUNDCURVE"},
+#'     \code{"CURVEPOLYGON"}, \code{"MULTICURVE"}, \code{"MULTISURFACE"},
+#'     \code{"CURVE"}, \code{"SURFACE"}, \code{"POLYHEDRALSURFACE"},
+#'     \code{"TIN"}, and \code{"TRIANGLE"}.
+#'
+#'     If multiple values are given, \code{x} can be any one  of those values.
+#'     If \code{NULL} (default), this test is skipped. This test requires that
+#'     \code{sf} is installed.
+#'
+#' @param valid_crs Optional character scalar; the required CRS value that
+#'     \code{x} must use. If multiple values are given, \code{x} can be any one
+#'     of those values. If \code{NULL} (default), this test is skipped. This test
+#'     requires that \code{sf} is installed.
+#' @param valid_longlat Optional logical scalar; if \code{TRUE}, \code{x} must
+#'     use a geographic coordinate system. If \code{FALSE}, \code{x} must use a
+#'     projected coordinate system. If \code{NULL} (default), this test is skipped.
+#'     This test requires that \code{sf} is installed.
 #' @param null_valid Required logical scalar; whether the parameter can be \code{NULL}.
 #'     If \code{FALSE}, the function will throw an error if \code{x} is \code{NULL}.
 #'     Default is \code{TRUE}.
@@ -48,7 +84,7 @@
 #' # example(x = sf)
 #'
 #' @export
-dis_sf <- function(x, valid_geometry_name = "geometry", valid_geometry_type = NULL,
+dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
                    valid_crs = NULL, valid_longlat = NULL,
                    null_valid = TRUE, param = NULL, call = NULL,
                    fact_check = "global"){
@@ -123,14 +159,16 @@ dis_sf <- function(x, valid_geometry_name = "geometry", valid_geometry_type = NU
       if (rlang::is_installed("sf")) {
 
         ### test that the expected geometry column name is used
-        if (attr(x, "sf_column") != valid_geometry_name){
-          cli::cli_abort(
-            message = c(
-              "{.arg {param}} must have a geometry column named {.arg {valid_geometry_name}}, not {.code {attr(x, 'sf_column')}}.",
-              "i" = "Change the {.code geometry} column name with {.code sf::st_geometry({param}) <- '{valid_geometry_name}'}."
-            ),
-            call = call
-          )
+        if (!is.null(valid_geometry_name)){
+          if (attr(x, "sf_column") != valid_geometry_name){
+            cli::cli_abort(
+              message = c(
+                "{.arg {param}} must have a geometry column named {.arg {valid_geometry_name}}, not {.code {attr(x, 'sf_column')}}.",
+                "i" = "Change the {.code geometry} column name with {.code sf::st_geometry({param}) <- '{valid_geometry_name}'}."
+              ),
+              call = call
+            )
+          }
         }
 
         ### test that object as valid geometry type
