@@ -15,16 +15,6 @@ common values used in function writing (such as `NULL`). These tests
 return informative error messages that follow the [`tidyverse` style
 guide’s recommendations](https://style.tidyverse.org/errors.html).
 
-## Installation
-
-You can install the development version of `disputeR` from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("remotes")
-remotes::install_github("chris-prener/disputeR")
-```
-
 ## Basic Usage
 
 The following example creates a simple function for squaring a numeric
@@ -92,9 +82,9 @@ example(x = "test")
 
 ## Additional Resources
 
-Check out `disputeR`’s
-[website](https://chris-prener.github.io/disputeR/) for additional
-examples as well as tips for developing with `disputeR`.
+Check out the vignettes and reference page for additional resources on
+using `disputeR` in your own projects as well as developing packages
+that contain `disputeR` checks.
 
 ## Code of Conduct
 

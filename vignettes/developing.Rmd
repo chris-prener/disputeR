@@ -1,0 +1,43 @@
+---
+title: "Developing with disputeR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Developing with disputeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+There are two functions within `disputeR` that are designed for modifying the developer experience: `dis_dev_check()` and `dis_fact_check()`.
+
+## Iterating with disputeR in Packages
+
+The first function, `dis_dev_check()`, is designed to save your end users milliseconds of execution time when `disputeR` and is particularly aimed at **package developers.** Since end users will not be interacting with `disputeR` directly, the logic checks on `disputeR`'s own functions are disabled by default. This is done to save your end users execution time, but comes at the expense of the package developer's experience. Using `dis_dev_check()` and setting it to `TRUE` in your console will allow `disptueR` to validate its own parameters, easing your own use of the package as a developer.
+
+```r
+# beginning of development session
+dis_dev_check(dev_check = TRUE)
+```
+
+Be sure not to include this in your package itself, however, because it will cause your functions to execute slightly slower than they otherwise should.
+
+## Using disputeR in a Shiny App
+
+The second function for developers is `dis_fact_check()`. If you are working on a Shiny app in particular and include `disputeR` functions in your modules or functions, setting this function to `FALSE` at the beginning of `global.R` or `app.R` will stop the core functions (`dis_character()`, `dis_df()`, `dis_logical()`, `dis_not_missing()`, and `dis_numeric()`) from executing the vast majority of their checks. 
+
+```r
+# beginning of global.R or app.R
+dis_fact_check(fact_check = FALSE)
+```
+
+This is useful in situations where you have completed development of the app and have all functions specified correctly. In that instance, `disputeR` does not add much to your app except milliseconds of execution time. Turning fact checking off saves most of those milliseconds for your end users. This can be overridden on a function call by function call basis with the `fact_check` argument, allowing you to selectively use `disputeR` on user inputs while disabling it elsewhere in your app.
+
+If you run into issues with one of your functions or modules, simply comment out `dis_fact_check()` and restart your `R` session to get the benefits of `disputeR` back.
+
+If your app accepts user input and you want it to either error or you want to build on an error, you can set individual functions' `fact_check()` argument from the default `"global"` to `"always"`. Pairing this with `try()` or `tryCatch()` would allow you to create specific workflows based on user input that fails to pass validation checks, while also allowing your app to stay running.

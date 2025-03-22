@@ -8,7 +8,7 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
+  fig.path = "man/figures/index-",
   out.width = "100%"
 )
 ```
@@ -18,15 +18,6 @@ knitr::opts_chunk$set(
 [![R build status](https://github.com/chris-prener/disputeR/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/disputeR/actions)
 
 The goal of `disputeR` is to easily implement unit tests within functions and Shiny modules. Unlike other packages that provide frameworks for developing these tests, `disputeR` takes a different approach, offering pre-built unit tests that can easily be dropped into functions and test for basic requirements, like class, length, and common values used in function writing (such as `NULL`). These tests return informative error messages that follow the [`tidyverse` style guide's recommendations](https://style.tidyverse.org/errors.html).
-
-## Installation
-
-You can install the development version of `disputeR` from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("remotes")
-remotes::install_github("chris-prener/disputeR")
-```
 
 ## Basic Usage
 
@@ -73,7 +64,7 @@ example(x = "test")
 ```
 
 ## Additional Resources
-Check out `disputeR`'s [website](https://chris-prener.github.io/disputeR/) for additional examples as well as tips for developing with `disputeR`.
+Check out the vignettes and reference page for additional resources on using `disputeR` in your own projects as well as developing packages that contain `disputeR` checks.
 
 ## Code of Conduct
   
