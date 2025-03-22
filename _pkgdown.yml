@@ -4,14 +4,20 @@ template:
   bootstrap: 5
 
 reference:
-  - title: "Core Argument Validation"
+  - title: "Core Arguments"
     desc: "Primary unit tests for validating arguments"
     contents:
     - dis_character
     - dis_df
     - dis_logical
+    - dis_names
     - dis_not_missing
     - dis_numeric
+
+  - title: "Special Cases"
+    desc: "Unit tests for validating arguments in less common situations"
+    contents:
+    - dis_sf
 
   - title: "Building Blocks"
     desc: "Modular functions for custom unit tests"
