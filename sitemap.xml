@@ -4,6 +4,9 @@
 <url><loc>https://chris-prener.github.io/disputeR/CONTRIBUTING.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/LICENSE.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/PULL_REQUEST_TEMPLATE.html</loc></url>
+<url><loc>https://chris-prener.github.io/disputeR/articles/basic.html</loc></url>
+<url><loc>https://chris-prener.github.io/disputeR/articles/developing.html</loc></url>
+<url><loc>https://chris-prener.github.io/disputeR/articles/index.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/authors.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/index.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/news/index.html</loc></url>
@@ -11,8 +14,10 @@
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_checker.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_dev_check.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_df.html</loc></url>
+<url><loc>https://chris-prener.github.io/disputeR/reference/dis_dir.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_environment.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_fact_check.html</loc></url>
+<url><loc>https://chris-prener.github.io/disputeR/reference/dis_file.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_indefinite.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_logical.html</loc></url>
 <url><loc>https://chris-prener.github.io/disputeR/reference/dis_msg_class.html</loc></url>

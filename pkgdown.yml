@@ -1,8 +1,10 @@
 pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2025-03-22T16:40Z
+articles:
+  basic: basic.html
+  developing: developing.html
+last_built: 2025-03-22T18:16Z
 urls:
   reference: https://chris-prener.github.io/disputeR/reference
   article: https://chris-prener.github.io/disputeR/articles

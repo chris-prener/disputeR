@@ -32,6 +32,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/basic.html">Basic Usage</a></li>
+    <li><a class="dropdown-item" href="articles/developing.html">Developing with disputeR</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -52,18 +59,10 @@
 <p><a href="https://github.com/chris-prener/disputeR/actions" class="external-link"><img src="https://github.com/chris-prener/disputeR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></p>
 <p>The goal of <code>disputeR</code> is to easily implement unit tests within functions and Shiny modules. Unlike other packages that provide frameworks for developing these tests, <code>disputeR</code> takes a different approach, offering pre-built unit tests that can easily be dropped into functions and test for basic requirements, like class, length, and common values used in function writing (such as <code>NULL</code>). These tests return informative error messages that follow the <a href="https://style.tidyverse.org/errors.html" class="external-link"><code>tidyverse</code> style guide’s recommendations</a>.</p>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>You can install the development version of <code>disputeR</code> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"chris-prener/disputeR"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="basic-usage">Basic Usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h2>
 <p>The following example creates a simple function for squaring a numeric value, which is passed to the function using the parameter <code>x</code>. Two <code>disputeR</code> functions are added before squaring <code>x</code>. The first, <code><a href="reference/dis_not_missing.html">dis_not_missing()</a></code>, evaluates <code>x</code> to ensure the parameter is not skipped by the user. The second, <code><a href="reference/dis_numeric.html">dis_numeric()</a></code>, applies a number of checks to <code>x</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## load package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://chris-prener.github.io/disputeR/">disputeR</a></span><span class="op">)</span></span>
 <span></span>
@@ -83,97 +82,26 @@
 <span><span class="op">}</span></span></code></pre></div>
 <p>The checks <code><a href="reference/dis_numeric.html">dis_numeric()</a></code> applies include default settings that require a scalar input (i.e. <code>length(x) == 1</code>) and do not allow <code>NA</code>, <code>NaN</code>, <code>Inf</code>, or <code>-Inf</code>. Each of these can be enabled using the parameters for <code><a href="reference/dis_numeric.html">dis_numeric()</a></code> at the function author’s discretion. In addition, we enforce a requirement that <code>x</code> cannot be <code>NULL</code>.</p>
 <p>In the case of the following example, <code>2</code> is a valid input to <code><a href="https://rdrr.io/r/utils/example.html" class="external-link">example()</a></code> and the function executes without error:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4</span></span></code></pre></div>
 <p>However, if the user does not specify the <code>x</code> argument, an informative error message is returned along with instructions for how to rectify the issue:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in `example()`:</span></span>
 <span><span class="co">#&gt; ! `x` must be provided but is missing.</span></span>
 <span><span class="co">#&gt; ℹ Add an argument for `x` to the function call.</span></span></code></pre></div>
 <p>Likewise, if <code>x</code> is incorrectly specified (such as with a <code>class(x) == character</code> value), a similar message along with instructions for fixing the error is returned:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"test"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in `example()`:</span></span>
 <span><span class="co">#&gt; ! `x` must be a &lt;numeric&gt; scalar, not a &lt;character&gt; scalar.</span></span>
 <span><span class="co">#&gt; ℹ Provide a &lt;numeric&gt; scalar for `x`, such as `x = 1`.</span></span></code></pre></div>
-<p>A similar approach can be taken for both character and logical arguments. For example :</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">example</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">round</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">{</span></span>
-<span></span>
-<span>   <span class="co">## check inputs with disputeR</span></span>
-<span>   <span class="fu"><a href="reference/dis_not_missing.html">dis_not_missing</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span>   <span class="fu"><a href="reference/dis_numeric.html">dis_numeric</a></span><span class="op">(</span><span class="va">x</span>, null_valid <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span>   <span class="fu"><a href="reference/dis_logical.html">dis_logical</a></span><span class="op">(</span><span class="va">round</span>, null_valid <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span>   <span class="co">## square</span></span>
-<span>   <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span></span>
-<span>   </span>
-<span>   <span class="co">## optionally round</span></span>
-<span>   <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE</a></span><span class="op">(</span><span class="va">round</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>     <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">out</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span>   <span class="op">}</span></span>
-<span></span>
-<span>   <span class="co">## return output</span></span>
-<span>   <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>The use of <code><a href="reference/dis_logical.html">dis_logical()</a></code> ensures that a non-<code>NULL</code>, logical argument (either <code>TRUE</code> or <code>FALSE</code>) is passed to the <code>round</code> parameter. This allows us to validate or dispute user inputs:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## no issues</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2.25</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 5.0625</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2.25</span>, round <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 5.06</span></span>
-<span></span>
-<span><span class="co">## error found</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2.25</span>, round <span class="op">=</span> <span class="st">"yes"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `example()`:</span></span>
-<span><span class="co">#&gt; ! `round` must be a &lt;logical&gt; scalar, not a &lt;character&gt; scalar.</span></span>
-<span><span class="co">#&gt; ℹ Provide a &lt;logical&gt; scalar for `round`, such as `round = TRUE` or `round =</span></span>
-<span><span class="co">#&gt;   FALSE`.</span></span></code></pre></div>
-<p>Both <code><a href="reference/dis_numeric.html">dis_numeric()</a></code> and <code><a href="reference/dis_character.html">dis_character()</a></code> also accept strings of valid values. The following function allows for only certain words to be passed to the <code>x</code> parameter:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">example</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
-<span></span>
-<span>   <span class="co">## check inputs with disputeR</span></span>
-<span>   <span class="fu"><a href="reference/dis_not_missing.html">dis_not_missing</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span>   <span class="fu"><a href="reference/dis_character.html">dis_character</a></span><span class="op">(</span><span class="va">x</span>, valid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ham"</span>, <span class="st">"eggs"</span>, <span class="st">"bacon"</span><span class="op">)</span>, null_valid <span class="op">=</span> <span class="cn">FALSE</span>,<span class="op">)</span></span>
-<span></span>
-<span>   <span class="co">## create output</span></span>
-<span>   <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">" is delicious!"</span><span class="op">)</span></span>
-<span></span>
-<span>   <span class="co">## return output</span></span>
-<span>   <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>The value for <code>x</code> will be checked against the vector passed to the <code>valid</code> parameter in addition to the other checks that <code><a href="reference/dis_character.html">dis_character()</a></code> performs:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## no issues</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"bacon"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "bacon is delicious!"</span></span>
-<span></span>
-<span><span class="co">## error found</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"spam"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `example()`:</span></span>
-<span><span class="co">#&gt; ! `x` must be a valid value for the parameter `x`, not `spam`.</span></span>
-<span><span class="co">#&gt; ℹ Valid arguments for `x` are: `ham`, `eggs`, and `bacon`.</span></span></code></pre></div>
-<p>The <code>valid</code> argument works the same way with <code><a href="reference/dis_numeric.html">dis_numeric()</a></code>, passing either integer or numeric values to <code>valid</code> instead of character data.</p>
 </div>
 <div class="section level2">
-<h2 id="developing-with-disputer">Developing with disputeR<a class="anchor" aria-label="anchor" href="#developing-with-disputer"></a>
+<h2 id="additional-resources">Additional Resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
 </h2>
-<p>There are two functions that are designed for modifying the developer experience. The first is <code><a href="reference/dis_fact_check.html">dis_fact_check()</a></code>. If you are working on a Shiny app in particular and include <code>disputeR</code> functions in your modules or functions, setting this function to <code>FALSE</code> at the beginning of <code>global.R</code> or <code>app.R</code> will stop the core functions (<code><a href="reference/dis_character.html">dis_character()</a></code>, <code><a href="reference/dis_df.html">dis_df()</a></code>, <code><a href="reference/dis_logical.html">dis_logical()</a></code>, <code><a href="reference/dis_not_missing.html">dis_not_missing()</a></code>, and <code><a href="reference/dis_numeric.html">dis_numeric()</a></code>) from executing the vast majority of their checks.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># beginning of global.R or app.R</span></span>
-<span><span class="fu"><a href="reference/dis_fact_check.html">dis_fact_check</a></span><span class="op">(</span>fact_check <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p>This is useful in situations where you have completed development of the app and have all functions specified correctly. In that instance, <code>disputeR</code> does not add much to your app except milliseconds of execution time. Turning fact checking off saves most of those milliseconds for your end users. This can be overridden on a function call by function call basis with the <code>fact_check</code> argument, allowing you to selectively use <code>disputeR</code> on user inputs while disabling it elsewhere in your app.</p>
-<p>If you run into issues with one of your functions or modules, simply comment out <code><a href="reference/dis_fact_check.html">dis_fact_check()</a></code> and restart your <code>R</code> session to get the benefits of <code>disputeR</code> back.</p>
-<p>The <code><a href="reference/dis_dev_check.html">dis_dev_check()</a></code> function is also designed to save your end users milliseconds of execution time when <code>disputeR</code> and is particularly aimed at package developers. Since end users will not be interacting with <code>disputeR</code> directly, the logic checks on <code>disputeR</code>’s own functions are disabled by default. This is done to save your end users execution time, but comes at the expense of the package developer’s experience. Using <code><a href="reference/dis_dev_check.html">dis_dev_check()</a></code> and setting it to <code>TRUE</code> will allow <code>disptueR</code> to validate its own parameters, easing your own use of the package as a developer.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># beginning of development session</span></span>
-<span><span class="fu"><a href="reference/dis_dev_check.html">dis_dev_check</a></span><span class="op">(</span>dev_check <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>Check out the vignettes and reference page for additional resources on using <code>disputeR</code> in your own projects as well as developing packages that contain <code>disputeR</code> checks.</p>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
