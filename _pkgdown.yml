@@ -17,6 +17,8 @@ reference:
   - title: "Special Cases"
     desc: "Unit tests for validating arguments in less common situations"
     contents:
+    - dis_dir
+    - dis_file
     - dis_sf
 
   - title: "Building Blocks"
