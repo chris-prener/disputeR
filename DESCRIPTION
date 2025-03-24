@@ -30,6 +30,8 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    sf
+    sf,
+    testthat (>= 3.0.0)
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
+Config/testthat/edition: 3
