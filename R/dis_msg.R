@@ -245,8 +245,8 @@ dis_msg_scalar <- function(class, stem, param = "param", call = rlang::caller_en
 
   ## create output
   out <- c(
-    "{.arg {", param, "}} must have a length of {.code 1} (i.e. a scalar), not a length of {.code {length(x)}}.",
-    "i" = paste0("Provide a {.cls ", class, "} scalar for {.arg {", param, "}}, such as ", stem, ".")
+    paste0("{.arg {", param, "}} must have a length of {.code 1} (i.e. a scalar), not a length of {.code {length(x)}}."),
+    "i" = paste0("Provide a {.cls ", class, "} scalar for {.arg {", param, "}}, such as ", stem)
   )
 
   ## return output

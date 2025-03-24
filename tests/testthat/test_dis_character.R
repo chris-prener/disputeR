@@ -45,19 +45,19 @@ test_dis_character_valid <- function(x){
 # test errors ####
 
 test_that("dis_character failure - x is not listed as valid", {
-  expect_snapshot(test_dis_character_invalid1(x = "R"), error = TRUE)
+  expect_snapshot(test_dis_character_invalid(x = "R"), error = TRUE)
 })
 
 test_that("dis_character failure - x is not a scalar", {
-  expect_snapshot(test_dis_character_invalid1(x = c("R", "Python")), error = TRUE)
+  expect_snapshot(test_dis_character_invalid(x = c("R", "Python")), error = TRUE)
 })
 
 test_that("dis_character failure - x is NULL", {
-  expect_snapshot(test_dis_character_invalid1(x = NULL), error = TRUE)
+  expect_snapshot(test_dis_character_invalid(x = NULL), error = TRUE)
 })
 
 test_that("dis_character failure - x is empty", {
-  expect_snapshot(test_dis_character_invalid1(x = ""), error = TRUE)
+  expect_snapshot(test_dis_character_invalid(x = ""), error = TRUE)
 })
 
 # === === === === === === === === === === === === === === === === === === ===
