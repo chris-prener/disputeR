@@ -23,6 +23,13 @@
 #'     using \code{rlang::caller_env()} (default). If there are multiple levels of
 #'     nesting, the \code{call} argument can be used to pass an environment created
 #'     in the outermost function.
+#' @param fact_check Required character scalar; whether to override fact checking
+#'     environment setting. If \code{"global"} (default), \code{dis_character} will
+#'     follow the global setting. If \code{"always"}, \code{dis_character} will
+#'     ignore any global setting and will always check \code{x}. This argument is
+#'     primarily intended for Shiny developers who wish to use \code{disputeR} in
+#'     modules. See the vignette on \code{vignette("developing", package = "disputeR")}
+#'     for details on how to use this function.
 #'
 #' @return This function will return an error message for \code{NULL} parameters
 #'     that are not allowed to be \code{NULL}. Otherwise, no output is returned.
@@ -35,48 +42,65 @@
 #'
 #' @export
 dis_null <- function(x, class, null_valid, param = rlang::caller_arg(x),
-                     call = rlang::caller_env()){
+                     call = rlang::caller_env(), fact_check = "global"){
 
-  ## check inputs if FACT_CHECK is not FALSE
-  if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
+  ## store environment if not provided
+  if (is.null(call)){
+    call <- rlang::caller_env()
+  }
 
-    ### check call
-    dis_environment(call)
+  ## check fact_check and set path
+  path <- dis_checker(fact_check = fact_check, call = call)
 
-    ### check param
-    dis_param(param)
+  ## check x if path == TRUE, return TRUE if all checks pass
+  if (isTRUE(path)){
 
-    ### check x
-    dis_not_missing(.f = rlang::is_missing(x), param = "x")
-
-    ### check class
-    dis_not_missing(.f = rlang::is_missing(class), param = "class")
-
-    if (!is.character(class) | length(class) != 1){
-      cli::cli_abort(
-        message = dis_msg_class(
-          x = class,
-          class = "character",
-          type = "scalar",
-          stem = "{.code {class} = 'character'}"
-        ),
-        call = call
-      )
+    ## store parameter name if not provided
+    if (is.null(param)){
+      param <- rlang::caller_arg(x)
     }
 
-    ### check null_valid
-    dis_not_missing(.f = rlang::is_missing(null_valid), param = "null_valid")
+    ## check inputs if FACT_CHECK is not FALSE
+    if (isTRUE(Sys.getenv(x = "DISPUTER_DEV_CHECK"))){
 
-    if (!is.logical(null_valid) | length(null_valid) != 1){
-      cli::cli_abort(
-        message = dis_msg_class(
-          x = null_valid,
-          class = "logical",
-          type = "scalar",
-          stem = "{.code {null_valid} = TRUE} or {.code {null_valid} = FALSE}"
-        ),
-        call = call
-      )
+      ### check call
+      dis_environment(call)
+
+      ### check param
+      dis_param(param)
+
+      ### check x
+      dis_not_missing(.f = rlang::is_missing(x), param = "x")
+
+      ### check class
+      dis_not_missing(.f = rlang::is_missing(class), param = "class")
+
+      if (!is.character(class) | length(class) != 1){
+        cli::cli_abort(
+          message = dis_msg_class(
+            x = class,
+            class = "character",
+            type = "scalar",
+            stem = "{.code {class} = 'character'}"
+          ),
+          call = call
+        )
+      }
+
+      ### check null_valid
+      dis_not_missing(.f = rlang::is_missing(null_valid), param = "null_valid")
+
+      if (!is.logical(null_valid) | length(null_valid) != 1){
+        cli::cli_abort(
+          message = dis_msg_class(
+            x = null_valid,
+            class = "logical",
+            type = "scalar",
+            stem = "{.code {null_valid} = TRUE} or {.code {null_valid} = FALSE}"
+          ),
+          call = call
+        )
+      }
     }
   }
 

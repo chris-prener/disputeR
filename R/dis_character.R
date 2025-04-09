@@ -116,7 +116,7 @@ dis_character <- function(x, valid = NULL, null_valid = TRUE, empty_valid = FALS
 
     ## unit tests
     ### test whether x is NULL
-    dis_null(x = x, class = "character", null_valid = null_valid)
+    dis_null(x = x, class = "character", null_valid = null_valid, param = param, call = call)
 
     ### tests for x as long as it is not NULL
     if (!is.null(x)){
@@ -133,7 +133,7 @@ dis_character <- function(x, valid = NULL, null_valid = TRUE, empty_valid = FALS
       ### test that x is character
       if (!is.character(x)){
         cli::cli_abort(
-          message = dis_msg_class(x = x, class = "character", type = type, stem = stem, param = "x", call = call),
+          message = dis_msg_class(x = x, class = "character", type = type, stem = stem, param = param, call = call),
           call = call
         )
       }

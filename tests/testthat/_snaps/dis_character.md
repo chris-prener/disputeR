@@ -21,7 +21,7 @@
     Code
       test_dis_character_invalid(x = NULL)
     Condition
-      Error in `dis_character()`:
+      Error in `test_dis_character_invalid()`:
       ! `x` must not be `NULL`.
       i Provide a non-`NULL` value for `x`, such as `x = 'value'`.
 

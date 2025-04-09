@@ -139,10 +139,12 @@ dis_msg_class <- function(x, class, type, stem, param = "param", call = rlang::c
 
   }
 
+  browser()
+
   ## create output
   out <- c(
-    paste0("{.arg {", param, "}} must be a {.cls ", class, "} ", type, ", not ", dis_indefinite(x), " {.cls {class(x)}} ", type, "."),
-    "i" = paste0("Provide a {.cls ", class, "} ", type, " for {.arg {", param, "}}, such as ", stem, ".")
+    paste0("{.arg ", param, "} must be a {.cls ", class, "} ", type, ", not ", dis_indefinite(x), " {.cls {class(x)}} ", type, "."),
+    "i" = paste0("Provide a {.cls ", class, "} ", type, " for {.arg ", param, "}, such as ", stem, ".")
   )
 
   ## return output
