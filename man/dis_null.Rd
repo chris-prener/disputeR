@@ -5,7 +5,7 @@
 \title{Validate Whether Parameter is Null}
 \usage{
 dis_null(x, class, null_valid, param = rlang::caller_arg(x),
-    call = rlang::caller_env())
+    call = rlang::caller_env(), fact_check = "global")
 }
 \arguments{
 \item{x}{Required object; a parameter argument to test.}
@@ -28,6 +28,14 @@ provide the calling environment to ensure the correct environment is referenced
 using \code{rlang::caller_env()} (default). If there are multiple levels of
 nesting, the \code{call} argument can be used to pass an environment created
 in the outermost function.}
+
+\item{fact_check}{Required character scalar; whether to override fact checking
+environment setting. If \code{"global"} (default), \code{dis_character} will
+follow the global setting. If \code{"always"}, \code{dis_character} will
+ignore any global setting and will always check \code{x}. This argument is
+primarily intended for Shiny developers who wish to use \code{disputeR} in
+modules. See the vignette on \code{vignette("developing", package = "disputeR")}
+for details on how to use this function.}
 }
 \value{
 This function will return an error message for \code{NULL} parameters

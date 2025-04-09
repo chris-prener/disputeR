@@ -5,7 +5,7 @@
 #'     \code{null_valid = FALSE}.
 #'
 #' @usage dis_null(x, class, null_valid, param = rlang::caller_arg(x),
-#'     call = rlang::caller_env())
+#'     call = rlang::caller_env(), fact_check = "global")
 #'
 #' @param x Required object; a parameter argument to test.
 #' @param class Required character scalar; the expected type of the parameter.
