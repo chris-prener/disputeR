@@ -119,12 +119,6 @@ rectify the issue:</p>
 instructions for fixing the error is returned:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"test"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Called from: dis_msg_class(x = x, class = class, type = type, stem = stem)</span></span>
-<span><span class="co">#&gt; debug: out &lt;- c(paste0("{.arg ", param, "} must be a {.cls ", class, </span></span>
-<span><span class="co">#&gt;     "} ", type, ", not ", dis_indefinite(x), " {.cls {class(x)}} ", </span></span>
-<span><span class="co">#&gt;     type, "."), i = paste0("Provide a {.cls ", class, "} ", type, </span></span>
-<span><span class="co">#&gt;     " for {.arg ", param, "}, such as ", stem, "."))</span></span>
-<span><span class="co">#&gt; debug: return(out)</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `example()`:</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `param` must be a <span style="color: #0000BB;">&lt;numeric&gt;</span> scalar, not a <span style="color: #0000BB;">&lt;character&gt;</span> scalar.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Provide a <span style="color: #0000BB;">&lt;numeric&gt;</span> scalar for `param`, such as `x = 1`.</span></span></code></pre></div>
@@ -167,12 +161,6 @@ allows us to validate or dispute user inputs:</p>
 <span></span>
 <span><span class="co">## error found</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2.25</span>, round <span class="op">=</span> <span class="st">"yes"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Called from: dis_msg_class(x, class = "logical", type = type, stem = stem)</span></span>
-<span><span class="co">#&gt; debug: out &lt;- c(paste0("{.arg ", param, "} must be a {.cls ", class, </span></span>
-<span><span class="co">#&gt;     "} ", type, ", not ", dis_indefinite(x), " {.cls {class(x)}} ", </span></span>
-<span><span class="co">#&gt;     type, "."), i = paste0("Provide a {.cls ", class, "} ", type, </span></span>
-<span><span class="co">#&gt;     " for {.arg ", param, "}, such as ", stem, "."))</span></span>
-<span><span class="co">#&gt; debug: return(out)</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `example()`:</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `param` must be a <span style="color: #0000BB;">&lt;logical&gt;</span> scalar, not a <span style="color: #0000BB;">&lt;character&gt;</span> scalar.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Provide a <span style="color: #0000BB;">&lt;logical&gt;</span> scalar for `param`, such as `round = TRUE` or `round =</span></span>
