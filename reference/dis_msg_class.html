@@ -106,10 +106,17 @@ in the outermost function.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">dis_msg_class</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"test"</span>, class <span class="op">=</span> <span class="st">"integer"</span>, type <span class="op">=</span> <span class="st">"scalar"</span>,</span></span>
 <span class="r-in"><span>              stem <span class="op">=</span> <span class="st">"{.code {param} = 1}"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  "{.arg {param}} must be a {.cls integer} scalar, not a {.cls {class(x)}} scalar." </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                  i </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "Provide a {.cls integer} scalar for {.arg {param}}, such as {.code {param} = 1}." </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Called from: dis_msg_class(x = "test", class = "integer", type = "scalar", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     stem = "{.code {param} = 1}")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: out &lt;- c(paste0("{.arg ", param, "} must be a {.cls ", class, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "} ", type, ", not ", dis_indefinite(x), " {.cls {class(x)}} ", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     type, "."), i = paste0("Provide a {.cls ", class, "} ", type, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     " for {.arg ", param, "}, such as ", stem, "."))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: return(out)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  "{.arg param} must be a {.cls integer} scalar, not a {.cls {class(x)}} scalar." </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                i </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Provide a {.cls integer} scalar for {.arg param}, such as {.code {param} = 1}." </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
