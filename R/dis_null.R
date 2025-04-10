@@ -118,6 +118,8 @@ dis_null <- function(x, class, null_valid, param = rlang::caller_arg(x),
       stem <- "{.code {param} = 1L}"
     } else if (class == "data frame"){
       stem <- "{.code {param} = df}"
+    } else if (class == "sf"){
+      stem <- "{.code {param} = sf}"
     }
 
     ## return error

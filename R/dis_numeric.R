@@ -185,7 +185,7 @@ dis_numeric <- function(x, valid = NULL, null_valid = TRUE, na_valid = FALSE,
     }
 
     ### check that x is not NULL, NA, NaN, or Inf/-Inf
-    dis_null(x = x, class = "logical", null_valid = null_valid)
+    dis_null(x = x, class = class, null_valid = null_valid, param = param, call = call)
 
     if (!nan_valid & any(is.nan(x))){
 

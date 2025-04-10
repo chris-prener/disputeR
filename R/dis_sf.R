@@ -142,7 +142,7 @@ dis_sf <- function(x, valid_geometry_name = NULL, valid_geometry_type = NULL,
 
     ## unit tests
     ### test whether x is NULL
-    dis_null(x = x, class = "data.frame", null_valid = null_valid)
+    dis_null(x = x, class = "sf", null_valid = null_valid, param = param, call = call)
 
     ### tests for x as long as it is not NULL
     if (!is.null(x)){
