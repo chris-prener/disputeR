@@ -146,7 +146,7 @@ dis_character <- function(x, valid = NULL, null_valid = TRUE, empty_valid = FALS
       }
 
       ### test that x is not empty
-      if (!empty_valid & x == ""){
+      if (!empty_valid & any(unique(x) == "")){
         cli::cli_abort(
           message = c(
             "{.arg {param}} must not be an empty {.cls character} value (i.e. {.code {param} = ''}).",
@@ -157,8 +157,18 @@ dis_character <- function(x, valid = NULL, null_valid = TRUE, empty_valid = FALS
       }
 
       ### test that x is in valid
-      if (!is.null(valid) & !x %in% valid){
-        cli::cli_abort(message = dis_msg_valid(), call = call)
+      if (!is.null(valid)){
+        if (length(x) == 1){
+          if (!x %in% valid){
+            cli::cli_abort(message = dis_msg_valid(), call = call)
+          }
+        } else {
+          for (value in x) {
+            if (!value %in% valid) {
+              cli::cli_abort(message = dis_msg_valid(), call = call)
+            }
+          }
+        }
       }
 
     }
